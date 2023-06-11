@@ -4,9 +4,6 @@ set -e
 
 cd ~/
 
-echo "Cloning dotfiles..."
-git clone https://github.com/Conradk10/dotfiles
-
 echo "Updating system..."
 sudo apt update
 
