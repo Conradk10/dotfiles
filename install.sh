@@ -29,4 +29,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 echo "Copying tmux config files..."
 cp dotfiles/.tmux.conf ~/.tmux.conf
 
+echo "Installing additional dependencies..."
+sudo apt install language-pack-ru -y
+
 echo "Dotfiles installation completed!"
