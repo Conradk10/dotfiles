@@ -12,13 +12,14 @@ To install, you have two options:
 
 ```shell
 cd ~/
-git clone https://github.com/Conradk10/dotfiles
+git clone https://github.com/eugconrad/dotfiles
 ```
 
 2. Run the install.sh script:
 
 ```shell
 cd dotfiles/
+chmod +x install.sh
 ./install.sh
 ```
 
@@ -28,22 +29,42 @@ cd dotfiles/
 
 ```shell
 cd ~/
-git clone https://github.com/Conradk10/dotfiles
+git clone https://github.com/eugconrad/dotfiles
 ```
 
 2. Execute each command step by step:
 
 ```shell
+#!/usr/bin/env bash
+
+set -e
+
 cd ~/
-git clone https://github.com/Conradk10/dotfiles
+
+echo "Updating system..."
 sudo apt update
-sudo apt install curl git neofetch exa tmux zsh -y
+
+echo "Installing dependencies..."
+sudo apt install curl git zsh tmux exa  -y
+
+echo "Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+echo "Copying zshrc files..."
 cp dotfiles/.zshrc ~/.zshrc
-cp dotfiles/.p10k.zsh ~/.p10k.zsh
+
+echo "Installing zsh-autosuggestions plugin..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+echo "Installing zsh-syntax-highlighting plugin..."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+echo "Copying tmux config files..."
 cp dotfiles/.tmux.conf ~/.tmux.conf
+
+echo "Installing additional dependencies..."
 sudo apt install language-pack-ru -y
+
+echo "Dotfiles installation completed!"
+
 ```
